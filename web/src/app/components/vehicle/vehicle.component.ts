@@ -6,9 +6,9 @@ import { Vehicle } from '../../models/vehicle';
   selector: 'app-garage',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './garage.component.html',
+  templateUrl: './vehicle.component.html',
 })
-export class GarageComponent {
+export class VehicleComponent {
   @Input()
   vehicles: Vehicle[] = [];
 }
