@@ -1,1 +1,49 @@
-<p>vehicle-form works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <input
+      class="form-control my-2"
+      placeholder="Marca"
+      name="brand"
+      [(ngModel)]="vehicle.brand"
+    />
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      placeholder="Modelo"
+      name="model"
+      [(ngModel)]="vehicle.model"
+    />
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      placeholder="Año"
+      name="year"
+      [(ngModel)]="vehicle.year"
+      type="number"
+    />
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      placeholder="Color"
+      name="color"
+      [(ngModel)]="vehicle.color"
+    />
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      placeholder="Transmisión"
+      name="transmision"
+      [(ngModel)]="vehicle.transmision"
+    />
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary">
+      Crear
+    </button>
+  </div>
+</form>
