@@ -1,0 +1,22 @@
+<table *ngIf="vehicles.length > 0" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">BRAND</th>
+      <th scope="col">MODEL</th>
+      <th scope="col">YEAR</th>
+      <th scope="col">COLOR</th>
+      <th scope="col">TRANSMISION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of vehicles; let i = index">
+      <td>{{ vehicle.id }}</td>
+      <td>{{ vehicle.brand }}</td>
+      <td>{{ vehicle.model }}</td>
+      <td>{{ vehicle.year }}</td>
+      <td>{{ vehicle.color }}</td>
+      <td>{{ vehicle.transmision }}</td>
+    </tr>
+  </tbody>
+</table>
