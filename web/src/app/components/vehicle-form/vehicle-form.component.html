@@ -1,50 +1,72 @@
+<!-- web/src/app/components/vehicle-form/vehicle-form.component.html -->
 <form (ngSubmit)="onSubmit()" class="p-4 border rounded shadow">
   <h4 class="text-center mb-3">Agregar Vehiclo</h4>
+
   <div>
+    <label for="brand">Marca:</label>
     <input
       class="form-control my-2"
-      placeholder="Marca"
+      placeholder="Ingrese la marca"
       name="brand"
+      id="brand"
       [(ngModel)]="vehicle.brand"
-    />
-  </div>
-  <div>
-    <input
-      class="form-control my-2"
-      placeholder="Modelo"
-      name="model"
-      [(ngModel)]="vehicle.model"
-    />
-  </div>
-  <div>
-    <input
-      class="form-control my-2"
-      placeholder="Año"
-      name="year"
-      [(ngModel)]="vehicle.year"
-      type="number"
-    />
-  </div>
-  <div>
-    <input
-      class="form-control my-2"
-      placeholder="Color"
-      name="color"
-      [(ngModel)]="vehicle.color"
-    />
-  </div>
-  <div>
-    <input
-      class="form-control my-2"
-      placeholder="Transmisión"
-      name="transmision"
-      [(ngModel)]="vehicle.transmision"
+      required
     />
   </div>
 
   <div>
-    <button type="submit" class="btn btn-primary btn-block">
-      Crear
-    </button>
+    <label for="model">Modelo:</label>
+    <input
+      class="form-control my-2"
+      placeholder="Ingrese el modelo"
+      name="model"
+      id="model"
+      [(ngModel)]="vehicle.model"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="year">Año:</label>
+    <input
+      class="form-control my-2"
+      placeholder="Ingrese el año"
+      name="year"
+      id="year"
+      [(ngModel)]="vehicle.year"
+      type="number"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="color">Color:</label>
+    <input
+      class="form-control my-2"
+      placeholder="Ingrese el color"
+      name="color"
+      id="color"
+      [(ngModel)]="vehicle.color"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="transmision">Transmisión:</label>
+    <select
+      class="form-control my-2"
+      name="transmision"
+      id="transmision"
+      [(ngModel)]="vehicle.transmision"
+      required
+    >
+      <option value="" disabled selected>Transmisión</option>
+      <option value="manual">Manual</option>
+      <option value="automatica">Automática</option>
+    </select>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary btn-block">Crear</button>
   </div>
 </form>
