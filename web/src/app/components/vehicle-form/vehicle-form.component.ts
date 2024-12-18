@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Vehicle } from '../../models/vehicle';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-vehicle-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './vehicle-form.component.html',
 })
 export class VehicleFormComponent {
@@ -18,8 +19,11 @@ export class VehicleFormComponent {
     this.vehicle = new Vehicle();
   }
 
-  onSubmit(): void {
-    this.newVehicleEventEmitter.emit(this.vehicle);
-    console.log(this.vehicle);
+  onSubmit(vehicleForm: NgForm): void {
+    if (vehicleForm.valid) {
+      this.newVehicleEventEmitter.emit(this.vehicle);
+    }
+    vehicleForm.reset();
+    vehicleForm.resetForm();
   }
 }

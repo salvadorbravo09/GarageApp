@@ -1,5 +1,9 @@
 <!-- web/src/app/components/vehicle-form/vehicle-form.component.html -->
-<form (ngSubmit)="onSubmit()" class="p-4 border rounded shadow">
+<form
+  (ngSubmit)="onSubmit(vehicleForm)"
+  #vehicleForm="ngForm"
+  class="p-4 border rounded shadow"
+>
   <h4 class="text-center mb-3">Agregar Vehiclo</h4>
 
   <div>
@@ -11,7 +15,22 @@
       id="brand"
       [(ngModel)]="vehicle.brand"
       required
+      minlength="2"
+      maxlength="30"
+      #brand="ngModel"
     />
+    <div
+      *ngIf="brand.invalid && (brand.dirty || brand.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="brand.errors?.['required']">Marca es requerido</div>
+      <div *ngIf="brand.errors?.['minlength']">
+        La marca debe tener al menos 2 caracteres
+      </div>
+      <div *ngIf="brand.errors?.['maxlength']">
+        La marca no puede exceder 30 caracteres
+      </div>
+    </div>
   </div>
 
   <div>
@@ -23,7 +42,22 @@
       id="model"
       [(ngModel)]="vehicle.model"
       required
+      minlength="1"
+      maxlength="30"
+      #model="ngModel"
     />
+    <div
+      *ngIf="model.invalid && (model.dirty || model.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="model.errors?.['required']">Modelo es requerido</div>
+      <div *ngIf="model.errors?.['minlength']">
+        El modelo debe tener al menos 1 carácter
+      </div>
+      <div *ngIf="model.errors?.['maxlength']">
+        El modelo no puede exceder 30 caracteres
+      </div>
+    </div>
   </div>
 
   <div>
@@ -36,7 +70,21 @@
       [(ngModel)]="vehicle.year"
       type="number"
       required
+      min="1886"
+      #year="ngModel"
     />
+    <div
+      *ngIf="year.invalid && (year.dirty || year.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="year.errors?.['required']">Año es requerido</div>
+      <div *ngIf="year.errors?.['min']">
+        El año debe ser mayor o igual a 1886
+      </div>
+      <div *ngIf="year.errors?.['max']">
+        El año no puede ser mayor que el año actual
+      </div>
+    </div>
   </div>
 
   <div>
@@ -48,7 +96,14 @@
       id="color"
       [(ngModel)]="vehicle.color"
       required
+      #color="ngModel"
     />
+    <div
+      *ngIf="color.invalid && (color.dirty || color.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="color.errors?.['required']">Color es requerido</div>
+    </div>
   </div>
 
   <div>
@@ -59,14 +114,29 @@
       id="transmision"
       [(ngModel)]="vehicle.transmision"
       required
+      #transmision="ngModel"
     >
       <option value="" disabled selected>Transmisión</option>
       <option value="manual">Manual</option>
       <option value="automatica">Automática</option>
     </select>
+    <div
+      *ngIf="transmision.invalid && (transmision.dirty || transmision.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="transmision.errors?.['required']">
+        Transmisión es requerida
+      </div>
+    </div>
   </div>
 
   <div>
-    <button type="submit" class="btn btn-primary btn-block">Crear</button>
+    <button
+      type="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="vehicleForm.invalid"
+    >
+      Crear
+    </button>
   </div>
 </form>
