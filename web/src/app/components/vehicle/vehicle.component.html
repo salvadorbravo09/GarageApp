@@ -7,6 +7,7 @@
       <th scope="col">YEAR</th>
       <th scope="col">COLOR</th>
       <th scope="col">TRANSMISION</th>
+      <th scope="col">ACCIONES</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,11 @@
       <td>{{ vehicle.year }}</td>
       <td>{{ vehicle.color }}</td>
       <td>{{ vehicle.transmision }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="onRemoveVehicle(vehicle.id)">
+          ELIMINAR
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

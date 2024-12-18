@@ -25,6 +25,13 @@ export class GarageAppComponent implements OnInit {
   }
 
   addVehicle(vehicle: Vehicle) {
-    this.vehicles = [...this.vehicles, { ...vehicle, id: new Date().getTime() }];
+    this.vehicles = [
+      ...this.vehicles,
+      { ...vehicle, id: new Date().getTime() },
+    ];
+  }
+
+  removeUser(id: number): void {
+    this.vehicles = this.vehicles.filter((vehicle) => vehicle.id != id);
   }
 }

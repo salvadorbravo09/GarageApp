@@ -8,7 +8,7 @@
       <div *ngIf="vehicles.length === 0" class="alert alert-warning">
         No hay registros en el sistema
       </div>
-      <app-garage [vehicles]="vehicles"></app-garage>
+      <app-garage [vehicles]="vehicles" (idVehicleEventEmitter)="removeUser($event)"></app-garage>
     </div>
   </div>
 </div>
