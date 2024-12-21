@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Vehicle } from '../../models/vehicle';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './vehicle-form.component.html',
 })
 export class VehicleFormComponent {
+
+  @Input()
   vehicle: Vehicle;
 
   @Output()

@@ -16,7 +16,11 @@ export class GarageAppComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
 
-  constructor(private vehicleService: VehicleService) {}
+  vehicleSelected: Vehicle;
+
+  constructor(private vehicleService: VehicleService) {
+    this.vehicleSelected = new Vehicle();
+  }
 
   ngOnInit(): void {
     this.vehicleService
@@ -33,5 +37,9 @@ export class GarageAppComponent implements OnInit {
 
   removeUser(id: number): void {
     this.vehicles = this.vehicles.filter((vehicle) => vehicle.id != id);
+  }
+
+  setSelectedVehicle(vehicleRow: Vehicle): void {
+    this.vehicleSelected = { ...vehicleRow };
   }
 }

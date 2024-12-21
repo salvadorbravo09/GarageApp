@@ -19,8 +19,19 @@
       <td>{{ vehicle.color }}</td>
       <td>{{ vehicle.transmision }}</td>
       <td>
-        <button class="btn btn-danger btn-sm" (click)="onRemoveVehicle(vehicle.id)">
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="onRemoveVehicle(vehicle.id)"
+        >
           ELIMINAR
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-info btn-sm"
+          (click)="onSelectedVehicle(vehicle)"
+        >
+          EDITAR
         </button>
       </td>
     </tr>

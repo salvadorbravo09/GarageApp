@@ -15,10 +15,17 @@ export class VehicleComponent {
   @Output()
   idVehicleEventEmitter = new EventEmitter();
 
+  @Output()
+  selectedVehicleEventEmitter = new EventEmitter();
+
   onRemoveVehicle(id: number): void {
     const confirmRemove = confirm('Esta seguro que desea eliminar?');
     if (confirmRemove) {
       this.idVehicleEventEmitter.emit(id);
     }
+  }
+
+  onSelectedVehicle(vehicle: Vehicle): void {
+    this.selectedVehicleEventEmitter.emit(vehicle);
   }
 }
