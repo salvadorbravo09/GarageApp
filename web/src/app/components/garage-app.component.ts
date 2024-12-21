@@ -29,10 +29,20 @@ export class GarageAppComponent implements OnInit {
   }
 
   addVehicle(vehicle: Vehicle) {
-    this.vehicles = [
-      ...this.vehicles,
-      { ...vehicle, id: new Date().getTime() },
-    ];
+    if (vehicle.id > 0) {
+      this.vehicles = this.vehicles.map((vehc) => {
+        if (vehc.id == vehicle.id) {
+          return { ...vehicle };
+        }
+        return vehc;
+      });
+    } else {
+      this.vehicles = [
+        ...this.vehicles,
+        { ...vehicle, id: new Date().getTime() },
+      ];
+    }
+    this.vehicleSelected = new Vehicle(); // Reiniciamos
   }
 
   removeUser(id: number): void {

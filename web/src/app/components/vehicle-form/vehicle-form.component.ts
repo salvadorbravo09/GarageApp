@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './vehicle-form.component.html',
 })
 export class VehicleFormComponent {
-
   @Input()
   vehicle: Vehicle;
 
@@ -26,6 +25,10 @@ export class VehicleFormComponent {
       this.newVehicleEventEmitter.emit(this.vehicle);
     }
     vehicleForm.reset();
+    vehicleForm.resetForm();
+  }
+
+  onClear(vehicleForm: NgForm): void {
     vehicleForm.resetForm();
   }
 }

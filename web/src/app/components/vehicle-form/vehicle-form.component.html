@@ -133,10 +133,14 @@
   <div>
     <button
       type="submit"
-      class="btn btn-primary btn-block"
+      class="btn btn-primary m-2"
       [disabled]="vehicleForm.invalid"
     >
-      Crear
+      {{ vehicle.id > 0 ? "Editar" : "Crear" }}
+    </button>
+    
+    <button type="button" class="btn btn-secondary" (click)="onClear(vehicleForm)">
+      Limpiar
     </button>
   </div>
 </form>
