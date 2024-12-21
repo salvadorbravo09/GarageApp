@@ -4,6 +4,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { CommonModule } from '@angular/common';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-garage-app',
@@ -42,11 +43,34 @@ export class GarageAppComponent implements OnInit {
         { ...vehicle, id: new Date().getTime() },
       ];
     }
+    Swal.fire({
+      title: 'Guardado!',
+      text: 'El vehiculo ha sido guardado con exito!',
+      icon: 'success',
+    });
+
     this.vehicleSelected = new Vehicle(); // Reiniciamos
   }
 
   removeUser(id: number): void {
-    this.vehicles = this.vehicles.filter((vehicle) => vehicle.id != id);
+    Swal.fire({
+      title: 'Seguro que quiere eliminar?',
+      text: 'No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.vehicles = this.vehicles.filter((vehicle) => vehicle.id != id);
+        Swal.fire({
+          title: 'Eliminado!',
+          text: 'El vehiculo ha sido eliminado con exito.',
+          icon: 'success',
+        });
+      }
+    });
   }
 
   setSelectedVehicle(vehicleRow: Vehicle): void {
