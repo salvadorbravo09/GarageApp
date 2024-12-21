@@ -19,10 +19,7 @@ export class VehicleComponent {
   selectedVehicleEventEmitter = new EventEmitter();
 
   onRemoveVehicle(id: number): void {
-    const confirmRemove = confirm('Esta seguro que desea eliminar?');
-    if (confirmRemove) {
-      this.idVehicleEventEmitter.emit(id);
-    }
+    this.idVehicleEventEmitter.emit(id);
   }
 
   onSelectedVehicle(vehicle: Vehicle): void {
