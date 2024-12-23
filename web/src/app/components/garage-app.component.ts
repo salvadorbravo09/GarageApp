@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [CommonModule, VehicleComponent, VehicleFormComponent],
   templateUrl: './garage-app.component.html',
+  styleUrls: ['./garage-app.component.css'],
 })
 export class GarageAppComponent implements OnInit {
   title: string = 'Listado de Vehiculos';
@@ -18,6 +19,8 @@ export class GarageAppComponent implements OnInit {
   vehicles: Vehicle[] = [];
 
   vehicleSelected: Vehicle;
+
+  open: boolean = false;
 
   constructor(private vehicleService: VehicleService) {
     this.vehicleSelected = new Vehicle();
@@ -50,6 +53,7 @@ export class GarageAppComponent implements OnInit {
     });
 
     this.vehicleSelected = new Vehicle(); // Reiniciamos
+    this.setOpen();
   }
 
   removeUser(id: number): void {
@@ -75,5 +79,13 @@ export class GarageAppComponent implements OnInit {
 
   setSelectedVehicle(vehicleRow: Vehicle): void {
     this.vehicleSelected = { ...vehicleRow };
+    this.open = true;
+  }
+
+  setOpen() {
+    this.open = !this.open;
+    if (!this.open) {
+      this.vehicleSelected = new Vehicle(); // Reiniciar el vehículo seleccionado al cerrar
+    }
   }
 }
