@@ -4,10 +4,7 @@ import com.garage.api.models.Vehicle;
 import com.garage.api.services.VehicleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,5 +31,10 @@ public class VehicleController {
             return ResponseEntity.status(HttpStatus.OK).body(optionalVehicle.orElseThrow());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping
+    public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+        return ResponseEntity.status(HttpStatus.OK).body(vehicleService.save(vehicle));
     }
 }
