@@ -37,4 +37,20 @@ public class VehicleController {
     public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
         return ResponseEntity.status(HttpStatus.OK).body(vehicleService.save(vehicle));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicle) {
+        Optional<Vehicle> existsVehicle = vehicleService.findById(id);
+
+        if (existsVehicle.isPresent()) {
+            Vehicle savedVehicle = existsVehicle.orElseThrow();
+            savedVehicle.setBrand(vehicle.getBrand());
+            savedVehicle.setModel(vehicle.getModel());
+            savedVehicle.setYear(vehicle.getYear());
+            savedVehicle.setColor(vehicle.getColor());
+            savedVehicle.setTransmision(vehicle.getTransmision());
+            return ResponseEntity.status(HttpStatus.OK).body(vehicleService.save(savedVehicle));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
 }
