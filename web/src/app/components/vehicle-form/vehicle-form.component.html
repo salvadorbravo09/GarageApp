@@ -1,180 +1,160 @@
-<div class="modal" tabindex="-1" style="display: block">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          Formulario {{ vehicle.id > 0 ? "Editar" : "Crear" }} Vehiculo
-        </h5>
-        <button
-          (click)="onOpenClose()"
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form
-          (ngSubmit)="onSubmit(vehicleForm)"
-          #vehicleForm="ngForm"
-          class="p-4 border rounded shadow"
-        >
-          <div>
-            <label for="brand">Marca:</label>
-            <input
-              class="form-control my-2"
-              placeholder="Ingrese la marca"
-              name="brand"
-              id="brand"
-              [(ngModel)]="vehicle.brand"
-              required
-              minlength="2"
-              maxlength="30"
-              #brand="ngModel"
-            />
-            <div
-              *ngIf="brand.invalid && (brand.dirty || brand.touched)"
-              class="text-danger"
-            >
-              <div *ngIf="brand.errors?.['required']">Marca es requerido</div>
-              <div *ngIf="brand.errors?.['minlength']">
-                La marca debe tener al menos 2 caracteres
-              </div>
-              <div *ngIf="brand.errors?.['maxlength']">
-                La marca no puede exceder 30 caracteres
-              </div>
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">
+        Formulario {{ vehicle.id > 0 ? "Editar" : "Crear" }} Vehiculo
+      </h5>
+    </div>
+    <div class="card-body">
+      <form
+        (ngSubmit)="onSubmit(vehicleForm)"
+        #vehicleForm="ngForm"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <label for="brand">Marca:</label>
+          <input
+            class="form-control my-2"
+            placeholder="Ingrese la marca"
+            name="brand"
+            id="brand"
+            [(ngModel)]="vehicle.brand"
+            required
+            minlength="2"
+            maxlength="30"
+            #brand="ngModel"
+          />
+          <div
+            *ngIf="brand.invalid && (brand.dirty || brand.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="brand.errors?.['required']">Marca es requerido</div>
+            <div *ngIf="brand.errors?.['minlength']">
+              La marca debe tener al menos 2 caracteres
+            </div>
+            <div *ngIf="brand.errors?.['maxlength']">
+              La marca no puede exceder 30 caracteres
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="model">Modelo:</label>
-            <input
-              class="form-control my-2"
-              placeholder="Ingrese el modelo"
-              name="model"
-              id="model"
-              [(ngModel)]="vehicle.model"
-              required
-              minlength="1"
-              maxlength="30"
-              #model="ngModel"
-            />
-            <div
-              *ngIf="model.invalid && (model.dirty || model.touched)"
-              class="text-danger"
-            >
-              <div *ngIf="model.errors?.['required']">Modelo es requerido</div>
-              <div *ngIf="model.errors?.['minlength']">
-                El modelo debe tener al menos 1 carácter
-              </div>
-              <div *ngIf="model.errors?.['maxlength']">
-                El modelo no puede exceder 30 caracteres
-              </div>
+        <div>
+          <label for="model">Modelo:</label>
+          <input
+            class="form-control my-2"
+            placeholder="Ingrese el modelo"
+            name="model"
+            id="model"
+            [(ngModel)]="vehicle.model"
+            required
+            minlength="1"
+            maxlength="30"
+            #model="ngModel"
+          />
+          <div
+            *ngIf="model.invalid && (model.dirty || model.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="model.errors?.['required']">Modelo es requerido</div>
+            <div *ngIf="model.errors?.['minlength']">
+              El modelo debe tener al menos 1 carácter
+            </div>
+            <div *ngIf="model.errors?.['maxlength']">
+              El modelo no puede exceder 30 caracteres
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="year">Año:</label>
-            <input
-              class="form-control my-2"
-              placeholder="Ingrese el año"
-              name="year"
-              id="year"
-              [(ngModel)]="vehicle.year"
-              type="number"
-              required
-              min="1886"
-              #year="ngModel"
-            />
-            <div
-              *ngIf="year.invalid && (year.dirty || year.touched)"
-              class="text-danger"
-            >
-              <div *ngIf="year.errors?.['required']">Año es requerido</div>
-              <div *ngIf="year.errors?.['min']">
-                El año debe ser mayor o igual a 1886
-              </div>
-              <div *ngIf="year.errors?.['max']">
-                El año no puede ser mayor que el año actual
-              </div>
+        <div>
+          <label for="year">Año:</label>
+          <input
+            class="form-control my-2"
+            placeholder="Ingrese el año"
+            name="year"
+            id="year"
+            [(ngModel)]="vehicle.year"
+            type="number"
+            required
+            min="1886"
+            #year="ngModel"
+          />
+          <div
+            *ngIf="year.invalid && (year.dirty || year.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="year.errors?.['required']">Año es requerido</div>
+            <div *ngIf="year.errors?.['min']">
+              El año debe ser mayor o igual a 1886
+            </div>
+            <div *ngIf="year.errors?.['max']">
+              El año no puede ser mayor que el año actual
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="color">Color:</label>
-            <input
-              class="form-control my-2"
-              placeholder="Ingrese el color"
-              name="color"
-              id="color"
-              [(ngModel)]="vehicle.color"
-              required
-              #color="ngModel"
-            />
-            <div
-              *ngIf="color.invalid && (color.dirty || color.touched)"
-              class="text-danger"
-            >
-              <div *ngIf="color.errors?.['required']">Color es requerido</div>
+        <div>
+          <label for="color">Color:</label>
+          <input
+            class="form-control my-2"
+            placeholder="Ingrese el color"
+            name="color"
+            id="color"
+            [(ngModel)]="vehicle.color"
+            required
+            #color="ngModel"
+          />
+          <div
+            *ngIf="color.invalid && (color.dirty || color.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="color.errors?.['required']">Color es requerido</div>
+          </div>
+        </div>
+
+        <div>
+          <label for="transmision">Transmisión:</label>
+          <select
+            class="form-control my-2"
+            name="transmision"
+            id="transmision"
+            [(ngModel)]="vehicle.transmision"
+            required
+            #transmision="ngModel"
+          >
+            <option value="" disabled selected>Transmisión</option>
+            <option value="manual">Manual</option>
+            <option value="automatica">Automática</option>
+          </select>
+          <div
+            *ngIf="
+              transmision.invalid && (transmision.dirty || transmision.touched)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="transmision.errors?.['required']">
+              Transmisión es requerida
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="transmision">Transmisión:</label>
-            <select
-              class="form-control my-2"
-              name="transmision"
-              id="transmision"
-              [(ngModel)]="vehicle.transmision"
-              required
-              #transmision="ngModel"
-            >
-              <option value="" disabled selected>Transmisión</option>
-              <option value="manual">Manual</option>
-              <option value="automatica">Automática</option>
-            </select>
-            <div
-              *ngIf="
-                transmision.invalid &&
-                (transmision.dirty || transmision.touched)
-              "
-              class="text-danger"
-            >
-              <div *ngIf="transmision.errors?.['required']">
-                Transmisión es requerida
-              </div>
-            </div>
-          </div>
+        <div>
+          <button
+            type="submit"
+            class="btn btn-primary m-2"
+            [disabled]="vehicleForm.invalid"
+          >
+            {{ vehicle.id > 0 ? "Editar" : "Crear" }}
+          </button>
 
-          <div>
-            <button
-              type="submit"
-              class="btn btn-primary m-2"
-              [disabled]="vehicleForm.invalid"
-            >
-              {{ vehicle.id > 0 ? "Editar" : "Crear" }}
-            </button>
-
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="onClear(vehicleForm)"
-            >
-              Limpiar
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          (click)="onOpenClose()"
-        >
-          Close
-        </button>
-      </div>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="onClear(vehicleForm)"
+          >
+            Limpiar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

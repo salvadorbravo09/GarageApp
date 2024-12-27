@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 import { VehicleService } from '../services/vehicle.service';
 import { CommonModule } from '@angular/common';
-import { VehicleComponent } from './vehicle/vehicle.component';
-import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import Swal from 'sweetalert2';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   selector: 'app-garage-app',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
   templateUrl: './garage-app.component.html',
   styleUrls: ['./garage-app.component.css'],
 })
@@ -18,8 +17,6 @@ export class GarageAppComponent implements OnInit {
   vehicles: Vehicle[] = [];
 
   vehicleSelected: Vehicle;
-
-  open: boolean = false;
 
   constructor(private vehicleService: VehicleService) {
     this.vehicleSelected = new Vehicle();
@@ -52,7 +49,6 @@ export class GarageAppComponent implements OnInit {
     });
 
     this.vehicleSelected = new Vehicle(); // Reiniciamos
-    this.setOpen();
   }
 
   removeUser(id: number): void {
@@ -78,13 +74,5 @@ export class GarageAppComponent implements OnInit {
 
   setSelectedVehicle(vehicleRow: Vehicle): void {
     this.vehicleSelected = { ...vehicleRow };
-    this.open = true;
-  }
-
-  setOpen() {
-    this.open = !this.open;
-    if (!this.open) {
-      this.vehicleSelected = new Vehicle(); // Reiniciar el vehículo seleccionado al cerrar
-    }
   }
 }

@@ -1,6 +1,10 @@
 <h3>{{ title }}</h3>
 
-<button class="btn btn-primary">Crear Vehiculo</button>
+<button class="btn btn-primary my-3" [routerLink]="['/vehicles/create']">Crear Vehiculo</button>
+
+@if (vehicles.length == 0) {
+  <div class="alert alert-warning">No hay registros en el sistema!</div>
+}
 
 <table *ngIf="vehicles.length > 0" class="table table-hover table-striped">
   <thead class="thead-dark">

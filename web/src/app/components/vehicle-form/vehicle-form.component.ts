@@ -14,9 +14,6 @@ export class VehicleFormComponent {
   vehicle: Vehicle;
 
   @Output()
-  openEventEmitter = new EventEmitter();
-
-  @Output()
   newVehicleEventEmitter: EventEmitter<Vehicle> = new EventEmitter();
 
   constructor() {
@@ -33,9 +30,5 @@ export class VehicleFormComponent {
 
   onClear(vehicleForm: NgForm): void {
     vehicleForm.resetForm();
-  }
-
-  onOpenClose() {
-    this.openEventEmitter.emit();
   }
 }

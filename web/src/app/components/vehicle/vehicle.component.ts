@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Vehicle } from '../../models/vehicle';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-garage',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './vehicle.component.html',
 })
 export class VehicleComponent {
