@@ -12,8 +12,6 @@ export class VehicleService {
   constructor(private http: HttpClient) {}
 
   findAll(): Observable<Vehicle[]> {
-    return this.http
-      .get('http://localhost:8080/api/vehicle/v1')
-      .pipe(map((vehicles: any) => vehicles as Vehicle[]));
+    return this.http.get<Vehicle[]>('http://localhost:8080/api/vehicle/v1');
   }
 }
