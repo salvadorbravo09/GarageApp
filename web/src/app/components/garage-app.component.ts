@@ -5,17 +5,16 @@ import { CommonModule } from '@angular/common';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import Swal from 'sweetalert2';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-garage-app',
   standalone: true,
-  imports: [CommonModule, VehicleComponent, VehicleFormComponent],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './garage-app.component.html',
   styleUrls: ['./garage-app.component.css'],
 })
 export class GarageAppComponent implements OnInit {
-  title: string = 'Listado de Vehiculos';
-
   vehicles: Vehicle[] = [];
 
   vehicleSelected: Vehicle;

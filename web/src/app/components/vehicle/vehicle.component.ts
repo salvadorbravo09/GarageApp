@@ -9,6 +9,8 @@ import { Vehicle } from '../../models/vehicle';
   templateUrl: './vehicle.component.html',
 })
 export class VehicleComponent {
+  title: string = 'Listado de Vehiculos';
+
   @Input()
   vehicles: Vehicle[] = [];
 
