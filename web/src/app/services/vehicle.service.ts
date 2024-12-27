@@ -1,33 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VehicleService {
-  private vehicles: Vehicle[] = [
-    {
-      id: 1,
-      brand: 'Toyota',
-      model: 'Corolla',
-      year: 2010,
-      color: 'Gris',
-      transmision: 'Manual',
-    },
-    {
-      id: 2,
-      brand: 'Fiat',
-      model: 'Palio',
-      year: 2004,
-      color: 'Negro',
-      transmision: 'Manual',
-    },
-  ];
+  private vehicles: Vehicle[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   findAll(): Observable<Vehicle[]> {
-    return of(this.vehicles);
+    return this.http
+      .get('http://localhost:8080/api/vehicle/v1')
+      .pipe(map((vehicles: any) => vehicles as Vehicle[]));
   }
 }
