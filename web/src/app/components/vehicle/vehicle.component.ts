@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Vehicle } from '../../models/vehicle';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-garage',
@@ -12,14 +12,15 @@ import { RouterModule } from '@angular/router';
 export class VehicleComponent {
   title: string = 'Listado de Vehiculos';
 
-  @Input()
   vehicles: Vehicle[] = [];
 
-  @Output()
   idVehicleEventEmitter = new EventEmitter();
 
-  @Output()
   selectedVehicleEventEmitter = new EventEmitter();
+
+  constructor(private router: Router) {
+    this.vehicles = this.router.getCurrentNavigation()?.extras.state!['vehicles'];
+  }
 
   onRemoveVehicle(id: number): void {
     this.idVehicleEventEmitter.emit(id);

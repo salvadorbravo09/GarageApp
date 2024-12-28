@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Vehicle } from '../../models/vehicle';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +10,6 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
 
+  @Input()
+  vehicles: Vehicle[] = [];
 }
